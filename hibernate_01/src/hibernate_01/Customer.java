@@ -78,8 +78,4 @@ public class Customer {
 	public void setBal(double bal) {
 		this.bal = bal;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("Main in Customer");
-	}
 }

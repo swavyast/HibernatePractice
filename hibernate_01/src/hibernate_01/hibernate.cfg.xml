@@ -4,14 +4,14 @@
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">    
 	<hibernate-configuration>
 	<session-factory>
-	    <property name="hbm2ddl.auto">update</property>      
-        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property> 
+	    <property name="hbm2ddl.auto">create</property>      
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property> 
         <property name="hibernate.show_sql">true</property>      
-        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>      
-        <property name="connection.username">system@ml</property>      
-        <property name="connection.password">Delphic92</property>      
+        <property name="connection.url">jdbc:mysql://localhost:3306/mydb</property>      
+        <property name="connection.username">root</property>      
+        <property name="connection.password">68921794</property>      
         <property name="connection.pool_size">99</property> 
-        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>   
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>   
 	<mapping resource="hibernate_01/customer.hbm.xml"/>
 	</session-factory>
 	</hibernate-configuration>

@@ -3,7 +3,7 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<class name="Customer" table="customer">
+<class name="hibernate_01.Customer" table="customer">
 <id name="cid" column="cid" type="int">
 <generator class="increment" />
 </id>
