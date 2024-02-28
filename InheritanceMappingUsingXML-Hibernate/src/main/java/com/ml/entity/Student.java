@@ -1,21 +1,20 @@
 package com.ml.entity;
 
-public class Student {
-	
-	private String id;
-	private String name;
+public class Student extends Person {
+
+	private String studentId;
 	private String email;
 	private String enrollmentId;
 	private String batch;
 	private String displayPicture;
 	private String marksheet;
-	
-	public Student() {}
 
-	public Student(String name, String email, String enrollmentId, String batch, String displayPicture,
-			String marksheet) {
+	public Student() {
+		// default constructor
+	}
+
+	public Student(String email, String enrollmentId, String batch, String displayPicture, String marksheet) {
 		super();
-		this.name = name;
 		this.email = email;
 		this.enrollmentId = enrollmentId;
 		this.batch = batch;
@@ -23,20 +22,12 @@ public class Student {
 		this.marksheet = marksheet;
 	}
 
-	public String getId() {
-		return id;
+	public String getStudentId() {
+		return studentId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setStudentId(String id) {
+		this.studentId = id;
 	}
 
 	public String getEmail() {
@@ -81,7 +72,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", enrollmentId=" + enrollmentId
+		return super.toString() + "[studentId=" + studentId + ", email=" + email + ", enrollmentId=" + enrollmentId
 				+ ", batch=" + batch + ", displayPicture=" + displayPicture + ", marksheet=" + marksheet + "]";
 	}
 

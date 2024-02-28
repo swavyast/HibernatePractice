@@ -1,19 +1,18 @@
 package com.ml.entity;
 
 public class Employee extends Person {
-	
+
 	private String employeeId;
 	private Double salary;
 	private Double bonus;
 	private Integer annualLeaves;
 	private Integer leaveWithoutPay;
-	
+
 	public Employee() {
-		//default constructor
+		// default constructor
 	}
 
-	public Employee(String employeeId, Double salary, Double bonus, Integer annualLeaves,
-			Integer leaveWithoutPay) {
+	public Employee(String employeeId, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
 		super();
 		this.employeeId = employeeId;
 		this.salary = salary;
@@ -64,9 +63,8 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return super.toString()+ " [employeeId=" + employeeId + ", salary=" + salary + ", bonus="
-				+ bonus + ", annualLeaves=" + annualLeaves + ", leaveWithoutPay=" + leaveWithoutPay + "]";
+		return super.toString() + " [employeeId=" + employeeId + ", salary=" + salary + ", bonus=" + bonus
+				+ ", annualLeaves=" + annualLeaves + ", leaveWithoutPay=" + leaveWithoutPay + "]";
 	}
-	
 
 }

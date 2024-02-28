@@ -1,7 +1,7 @@
 package com.ml.entity;
 
 public class Person {
-	
+
 	private String id;
 	private String name;
 	private String fatherName;
@@ -10,9 +10,9 @@ public class Person {
 	private String age;
 	private Enum<?> gender;
 	private Enum<?> ethnicity;
-	
+
 	public Person() {
-		//default constructor
+		// default constructor
 	}
 
 	public String getId() {
@@ -84,5 +84,5 @@ public class Person {
 		return "Person [id=" + id + ", name=" + name + ", fatherName=" + fatherName + ", motherName=" + motherName
 				+ ", dob=" + dob + ", age=" + age + ", gender=" + gender + ", ethnicity=" + ethnicity + "]";
 	}
-	
+
 }

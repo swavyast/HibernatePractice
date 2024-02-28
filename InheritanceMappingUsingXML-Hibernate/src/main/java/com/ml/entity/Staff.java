@@ -10,13 +10,13 @@ public class Staff extends Employee {
 	private String reportsTo;
 	private String [] teamMembers;
 	private String position;
-	private Set canAccess;	//facilities
+	private Set<String> canAccess;	//facilities
 	
 	public Staff() {
 		//default constructor
 	}
 
-	public Staff(String id, String department, String reportsTo, String[] teamMembers, String position, Set canAccess) {
+	public Staff(String id, String department, String reportsTo, String[] teamMembers, String position, Set<String> canAccess) {
 		super();
 		this.id = id;
 		this.department = department;
@@ -66,11 +66,11 @@ public class Staff extends Employee {
 		this.position = position;
 	}
 
-	public Set getCanAccess() {
+	public Set<String> getCanAccess() {
 		return canAccess;
 	}
 
-	public void setCanAccess(Set canAccess) {
+	public void setCanAccess(Set<String> canAccess) {
 		this.canAccess = canAccess;
 	}
 

@@ -1,0 +1,102 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ml.entity">
+	<!-- Person class mapping -->
+	<class name="Person" table="person">
+		<id name="id" column="id" type="string">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="name" column="name" type="string"></property>
+		<property name="fatherName" column="father" type="string"></property>
+		<property name="motherName" column="mother" type="string"></property>
+		<property name="dob" column="dob" type="string"></property>
+		<property name="age" column="age" type="integer"></property>
+		<property name="gender" column="gender" type="enum"></property>
+		<property name="ethnicity" column="ethnicity" type="enum"></property>
+	</class>
+	<!-- Employee class mapping -->
+	<class name="Employee" table="employee">
+		<id name="employeeId" column="eid" type="string">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="salary" column="salary" type="double"></property>
+		<property name="bonus" column="bonus" type="double"></property>
+		<property name="annualLeaves" column="al" type="integer"></property>
+		<property name="leaveWithoutPay" column="lwp" type="integer"></property>
+	</class>
+	<!-- Staff class mapping -->
+	<class name="Staff" table="staff">
+	<id name="id" column="id" type="string">
+	<generator class="uuid"></generator>
+	</id>
+	<property name="department" column="dept" type="string"></property>
+	<property name="reportsTo" column="reportsTo" type="string"></property>
+	<array name="teamMembers" table="teamMembers">
+	<key column="id"></key>
+	<index column="memberIndex"></index>
+	<element column="member" type="string"></element>
+	</array>
+	<property name="position" column="position" type="string"></property>
+	<set name="canAccess" table="facilities">
+	<key column="facilityId"></key>
+	<element column="facility" type="string"></element>
+	</set>
+	</class>
+	<!-- Teacher class mapping -->
+	<class>
+	<id name="id" column="id" type="string">
+	<generator class="uuid"></generator>
+	</id>
+	<list name="specialities" table="specialities">
+	<key column="id"></key>
+	<list-index column="spSort"></list-index>
+	<composite-element class="Subject">
+	<property name="subject" column="subject">
+	<type name="org.hibernate.type.EnumType">
+	<param name="enumClass">com.ml.entity.Subject</param>
+	</type>
+	</property>
+	</composite-element>
+	</list>
+	<array name="classRoom">
+	<key column="id"></key>
+	<index column="classIndex"></index>
+	<element column="class" type="string"></element>
+	</array>
+	<property name="modeOfTeaching">
+	<type name="org.hibernate.type.EnumType">
+	<param name="enumClass">com.ml.entity.ModeOfTeaching</param>
+	</type>
+	</property>
+	</class>
+	
+	<!-- Student class mapping -->
+	<class name="Student" table="student">
+		<id name="studentId" column="sid">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="email" column="email" type="string"></property>
+		<property name="enrollmentId" column="enrId" type="string"></property>
+		<property name="batch" column="batch" type="string"></property>
+		<property name="displayPicture" column="dp" type="string"></property>
+		<property name="marksheet" column="marksheet" type="string"></property>
+	</class>
+	<!-- RegularStudent class mapping -->
+	<class name="RegularStudent" table="regular_student">
+	<id name="id" column="id" type="string">
+	<generator class="uuid"></generator>
+	</id>
+	<property name="batchName" column="batchName" type="string"></property>
+	<map name="subjectDetails" table="subjectDetails">
+	<key column="id"></key>
+	<map-key column="subject">
+	<type name="org.hibernate.type.EnumType">
+	<param name="enumClass">com.ml.entity.Subject</param>
+	</type>
+	</map-key>
+	<composite-element class="Teacher"></composite-element>
+	</map>
+	<property name=""></property>
+	</class>
+</hibernate-mapping>
