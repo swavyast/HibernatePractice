@@ -8,13 +8,13 @@ public class Teacher extends Staff {
 	private String id;
 	private List<Subject> specialities;
 	private String[] classRoom;
-	private Enum modeOfTeaching;
+	private ModeOfTeaching modeOfTeaching;
 
 	public Teacher() {
 		// default constructor
 	}
 
-	public Teacher(List<Subject> specialities, String[] classRoom, Enum modeOfTeaching) {
+	public Teacher(List<Subject> specialities, String[] classRoom, ModeOfTeaching modeOfTeaching) {
 		super();
 		this.specialities = specialities;
 		this.classRoom = classRoom;
@@ -41,11 +41,11 @@ public class Teacher extends Staff {
 		this.classRoom = classRoom;
 	}
 
-	public Enum getModeOfTeaching() {
+	public ModeOfTeaching getModeOfTeaching() {
 		return modeOfTeaching;
 	}
 
-	public void setModeOfTeaching(Enum modeOfTeaching) {
+	public void setModeOfTeaching(ModeOfTeaching modeOfTeaching) {
 		this.modeOfTeaching = modeOfTeaching;
 	}
 

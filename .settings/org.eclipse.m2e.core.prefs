@@ -2,3 +2,11 @@ activeProfiles=
 eclipse.preferences.version=1
 resolveWorkspaceProjects=true
 version=1
+<mirrors>
+    <mirror>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2</url>
+        <mirrorOf>central</mirrorOf>
+    </mirror>
+    <!-- Add more mirrors if needed -->
+</mirrors>

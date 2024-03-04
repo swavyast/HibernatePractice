@@ -9,11 +9,11 @@ public class Employee extends Person {
 	private Integer leaveWithoutPay;
 
 	public Employee() {
-		// default constructor
 	}
 
-	public Employee(String employeeId, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
-		super();
+	public Employee(String name, String fatherName, String motherName, String dob, String age, Gender gender,
+			Ethnicity ethnicity, String employeeId, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
+		super(name, fatherName, motherName, dob, age, gender, ethnicity);
 		this.employeeId = employeeId;
 		this.salary = salary;
 		this.bonus = bonus;

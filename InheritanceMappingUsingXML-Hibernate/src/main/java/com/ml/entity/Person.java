@@ -8,11 +8,22 @@ public class Person {
 	private String motherName;
 	private String dob;
 	private String age;
-	private Enum<?> gender;
-	private Enum<?> ethnicity;
+	private Gender gender;
+	private Ethnicity ethnicity;
 
 	public Person() {
 		// default constructor
+	}
+
+	public Person(String name, String fatherName, String motherName, String dob, String age, Gender gender,
+			Ethnicity ethnicity) {
+		this.name = name;
+		this.fatherName = fatherName;
+		this.motherName = motherName;
+		this.dob = dob;
+		this.age = age;
+		this.gender = gender;
+		this.ethnicity = ethnicity;
 	}
 
 	public String getId() {
@@ -63,19 +74,19 @@ public class Person {
 		this.age = age;
 	}
 
-	public Enum<?> getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(Enum<?> gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
-	public Enum<?> getEthnicity() {
+	public Ethnicity getEthnicity() {
 		return ethnicity;
 	}
 
-	public void setEthnicity(Enum<?> ethnicity) {
+	public void setEthnicity(Ethnicity ethnicity) {
 		this.ethnicity = ethnicity;
 	}
 
