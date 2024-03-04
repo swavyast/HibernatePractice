@@ -34,8 +34,8 @@
         <property name="annualLeaves" column="al" type="integer"></property>
         <property name="leaveWithoutPay" column="lwp" type="integer"></property>
     </class>
-<!--     
-Staff class mapping
+     
+<!-- Staff class mapping -->
     <class name="Staff" table="staff">
         <id name="id" column="id" type="string">
             <generator class="uuid"></generator>
@@ -54,7 +54,7 @@ Staff class mapping
         </set>
     </class>
     
-    
+<!--    
 Teacher class mapping
     <class name="teacher" table="teacher">
         <id name="id" column="id" type="string">

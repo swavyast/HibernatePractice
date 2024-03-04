@@ -26,6 +26,16 @@ public class Person {
 		this.ethnicity = ethnicity;
 	}
 
+	public Person(Person p) {
+		this.name = p.name;
+		this.fatherName = p.fatherName;
+		this.motherName = p.motherName;
+		this.dob = p.dob;
+		this.age = p.age;
+		this.gender = p.gender;
+		this.ethnicity = p.ethnicity;
+	}
+
 	public String getId() {
 		return id;
 	}

@@ -11,14 +11,36 @@ public class Employee extends Person {
 	public Employee() {
 	}
 
-	public Employee(String name, String fatherName, String motherName, String dob, String age, Gender gender,
-			Ethnicity ethnicity, String employeeId, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
-		super(name, fatherName, motherName, dob, age, gender, ethnicity);
-		this.employeeId = employeeId;
+	public Employee(Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
 		this.salary = salary;
 		this.bonus = bonus;
 		this.annualLeaves = annualLeaves;
 		this.leaveWithoutPay = leaveWithoutPay;
+	}
+
+	public Employee(String name, String fatherName, String motherName, String dob, String age, Gender gender,
+			Ethnicity ethnicity, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
+		super(name, fatherName, motherName, dob, age, gender, ethnicity);
+		this.salary = salary;
+		this.bonus = bonus;
+		this.annualLeaves = annualLeaves;
+		this.leaveWithoutPay = leaveWithoutPay;
+	}
+
+	public Employee(Person p, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay) {
+		super(p);
+		this.salary = salary;
+		this.bonus = bonus;
+		this.annualLeaves = annualLeaves;
+		this.leaveWithoutPay = leaveWithoutPay;
+	}
+
+	public Employee(Person p, Employee emp) {
+		super(p);
+		this.salary = emp.salary;
+		this.bonus = emp.bonus;
+		this.annualLeaves = emp.annualLeaves;
+		this.leaveWithoutPay = emp.leaveWithoutPay;
 	}
 
 	public String getEmployeeId() {
