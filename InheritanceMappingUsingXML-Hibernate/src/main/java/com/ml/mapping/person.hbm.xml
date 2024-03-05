@@ -52,13 +52,12 @@
         <list name="specialities" table="specialities">
             <key column="id"></key>
             <list-index column="spSort"></list-index>
-            <composite-element class="Subject">
-                <property name="subject" column="subject">	<!-- FIXME : name attribute? -->
+            <element column="subject">
                     <type name="org.hibernate.type.EnumType">
                         <param name="enumClass">com.ml.entity.Subject</param>
+                        <param name="useNamed">true</param>
                     </type>
-                </property>
-            </composite-element>
+            </element>
         </list>
         <array name="classRoom">
             <key column="id"></key>

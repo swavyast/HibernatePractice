@@ -2,12 +2,10 @@ package com.ml.client;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
-import com.ml.dao.EmployeeDao;
 import com.ml.dao.StaffDao;
-import com.ml.dao.impl.EmployeeDaoImpl;
 import com.ml.dao.impl.StaffDaoImpl;
-import com.ml.entity.Employee;
 import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
 import com.ml.entity.Staff;
@@ -32,7 +30,12 @@ public class SaveStaff {
 		staff.setPosition("Java Developer");
 		staff.setReportsTo("Manager");
 		staff.setTeamMembers(Arrays.asList("Ramesh", "Suresh", "Mahesh").toArray(new String[0]));
-		staff.setCanAccess(new HashSet<>());
+		Set<String> set = new HashSet<String>();
+		set.add("Catalogue");
+		set.add("Inventory");
+		set.add("Couriers and Deliveries");
+		set.add("Control Room");
+		staff.setCanAccess(set);
 		staffdao.saveStaff(staff);
 
 	}

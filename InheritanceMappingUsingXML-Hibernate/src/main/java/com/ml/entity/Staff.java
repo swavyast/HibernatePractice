@@ -4,16 +4,35 @@ import java.util.Arrays;
 import java.util.Set;
 
 public class Staff extends Employee {
-	
+
 	private String id;
 	private String department;
 	private String manager;
-	private String [] teamMembers;
+	private String[] teamMembers;
 	private String position;
-	private Set<String> canAccess;	//facilities
-	
+	private Set<String> canAccess; // facilities
+
 	public Staff() {
-		//default constructor
+		// default constructor
+	}
+
+	public Staff(Person p, Employee e, Staff s) {
+		super(p, e);
+		this.department = s.department;
+		this.manager = s.manager;
+		this.teamMembers = s.teamMembers;
+		this.position = s.position;
+		this.canAccess = s.canAccess;
+	}
+
+	public Staff(Person p, Employee emp, String department, String manager, String[] teamMembers, String position,
+			Set<String> canAccess) {
+		super(p, emp);
+		this.department = department;
+		this.manager = manager;
+		this.teamMembers = teamMembers;
+		this.position = position;
+		this.canAccess = canAccess;
 	}
 
 	public Staff(String department, String manager, String[] teamMembers, String position, Set<String> canAccess) {
@@ -24,9 +43,11 @@ public class Staff extends Employee {
 		this.position = position;
 		this.canAccess = canAccess;
 	}
-	
-	public Staff(Person p, Employee emp, String department, String manager, String[] teamMembers, String position, Set<String> canAccess) {
-		super(p, emp);
+
+	public Staff(String name, String fatherName, String motherName, String dob, String age, Gender gender,
+			Ethnicity ethnicity, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay,
+			String department, String manager, String[] teamMembers, String position, Set<String> canAccess) {
+		super(name, fatherName, motherName, dob, age, gender, ethnicity, salary, bonus, annualLeaves, leaveWithoutPay);
 		this.department = department;
 		this.manager = manager;
 		this.teamMembers = teamMembers;
@@ -84,8 +105,9 @@ public class Staff extends Employee {
 
 	@Override
 	public String toString() {
-		return super.toString()+" [id=" + id + ", department=" + department + ", manager=" + manager + ", teamMembers="
-				+ Arrays.toString(teamMembers) + ", position=" + position + ", canAccess=" + canAccess + "]";
+		return super.toString() + " [id=" + id + ", department=" + department + ", manager=" + manager
+				+ ", teamMembers=" + Arrays.toString(teamMembers) + ", position=" + position + ", canAccess="
+				+ canAccess + "]";
 	}
-	
+
 }

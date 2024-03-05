@@ -30,7 +30,6 @@ public class StaffDaoImpl implements StaffDao {
 			Session session = FACTORY.openSession();
 			Transaction tx = session.getTransaction();
 			Person p = new Person(staff.getName(), staff.getDob(), staff.getAge(), staff.getFatherName(), staff.getMotherName(), staff.getGender(), staff.getEthnicity());
-			//new PersonDaoImpl().savePerson(p);
 			Employee emp = new Employee(p, staff.getSalary(), staff.getBonus(), staff.getAnnualLeaves(),
 					staff.getLeaveWithoutPay());
 			new EmployeeDaoImpl().saveEmployee(emp);
