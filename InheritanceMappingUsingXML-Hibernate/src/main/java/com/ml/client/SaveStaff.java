@@ -28,9 +28,9 @@ public class SaveStaff {
 		staff.setLeaveWithoutPay(30);
 		staff.setDepartment("IT/Software");
 		staff.setPosition("Java Developer");
-		staff.setReportsTo("Manager");
-		staff.setTeamMembers(Arrays.asList("Ramesh", "Suresh", "Mahesh").toArray(new String[0]));
-		Set<String> set = new HashSet<String>();
+		staff.setManager("Manager");
+		staff.setTeamMembers(Arrays.asList("Ramesh", "Suresh", "Mahesh"));
+		Set<String> set = new HashSet<>();
 		set.add("Catalogue");
 		set.add("Inventory");
 		set.add("Couriers and Deliveries");

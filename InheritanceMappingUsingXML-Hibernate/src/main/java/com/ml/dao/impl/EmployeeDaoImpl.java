@@ -1,6 +1,7 @@
 package com.ml.dao.impl;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -15,16 +16,16 @@ import com.ml.entity.Employee;
 import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
 import com.ml.entity.Person;
-import com.ml.utilities.DatabaseUtility;
+import com.ml.utilities.DatabaseUtil;
 
 public class EmployeeDaoImpl implements EmployeeDao {
-	
-	private static final SessionFactory FACTORY = DatabaseUtility.getSessionFactory();
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDaoImpl.class);
+
+	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
+	private static final Logger LOG = LoggerFactory.getLogger(EmployeeDaoImpl.class);
 
 	@Override
 	public void saveEmployee(Employee employee) {
-		
+
 		try {
 			Session session = FACTORY.openSession();
 			Transaction tx = session.getTransaction();
@@ -37,10 +38,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			p.setFatherName(employee.getFatherName());
 			p.setGender(employee.getGender());
 			p.setMotherName(employee.getMotherName());
+			LOG.info("Saving Personal Records...");
 			pdao.savePerson(p);
 			tx.begin();
 			Serializable s = session.save(employee);
-			System.out.println(s);
+			if (LOG.isInfoEnabled())
+				LOG.info(s.toString());
 			tx.commit();
 			session.close();
 		} catch (Exception e) {
@@ -51,12 +54,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				message = message.append(e.getMessage().toCharArray());
 				cause = cause.getCause();
 			}
-			LOGGER.error(message.toString());
+			LOG.error(message.toString());
 		}
 	}
 
 	@Override
-	public Employee getEmployeeById(String id) {
+	public Employee getEmployeeByEmployeeId(String eid) {
 
 		return null;
 	}
@@ -70,55 +73,55 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public List<Employee> getEmployeeByFatherName(String fatherName) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByMoherName(String MotherName) {
+	public List<Employee> getEmployeeByMoherName(String motherName) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getEmployeeByDateOfBirth(String dob) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getEmployeeByAge(String age) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getEmployeeByGender(Gender gender) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getEmployeeByEthnicity(Ethnicity ethnicity) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getEmployeeByGender(String gender) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getEmployeeByEthnicity(String ethnicity) {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Employee> getAllEmployee() {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 }

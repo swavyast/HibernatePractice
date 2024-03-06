@@ -1,14 +1,14 @@
 package com.ml.entity;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 public class Staff extends Employee {
 
-	private String id;
+	private String sid;
 	private String department;
 	private String manager;
-	private String[] teamMembers;
+	private List<String> teamMembers;
 	private String position;
 	private Set<String> canAccess; // facilities
 
@@ -25,7 +25,7 @@ public class Staff extends Employee {
 		this.canAccess = s.canAccess;
 	}
 
-	public Staff(Person p, Employee emp, String department, String manager, String[] teamMembers, String position,
+	public Staff(Person p, Employee emp, String department, String manager, List<String> teamMembers, String position,
 			Set<String> canAccess) {
 		super(p, emp);
 		this.department = department;
@@ -35,7 +35,7 @@ public class Staff extends Employee {
 		this.canAccess = canAccess;
 	}
 
-	public Staff(String department, String manager, String[] teamMembers, String position, Set<String> canAccess) {
+	public Staff(String department, String manager, List<String> teamMembers, String position, Set<String> canAccess) {
 		super();
 		this.department = department;
 		this.manager = manager;
@@ -46,7 +46,7 @@ public class Staff extends Employee {
 
 	public Staff(String name, String fatherName, String motherName, String dob, String age, Gender gender,
 			Ethnicity ethnicity, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay,
-			String department, String manager, String[] teamMembers, String position, Set<String> canAccess) {
+			String department, String manager, List<String> teamMembers, String position, Set<String> canAccess) {
 		super(name, fatherName, motherName, dob, age, gender, ethnicity, salary, bonus, annualLeaves, leaveWithoutPay);
 		this.department = department;
 		this.manager = manager;
@@ -55,12 +55,12 @@ public class Staff extends Employee {
 		this.canAccess = canAccess;
 	}
 
-	public String getId() {
-		return id;
+	public String getSid() {
+		return sid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
 
 	public String getDepartment() {
@@ -71,19 +71,19 @@ public class Staff extends Employee {
 		this.department = department;
 	}
 
-	public String getReportsTo() {
+	public String getManager() {
 		return manager;
 	}
 
-	public void setReportsTo(String reportsTo) {
-		this.manager = reportsTo;
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 
-	public String[] getTeamMembers() {
+	public List<String> getTeamMembers() {
 		return teamMembers;
 	}
 
-	public void setTeamMembers(String[] teamMembers) {
+	public void setTeamMembers(List<String> teamMembers) {
 		this.teamMembers = teamMembers;
 	}
 
@@ -105,9 +105,7 @@ public class Staff extends Employee {
 
 	@Override
 	public String toString() {
-		return super.toString() + " [id=" + id + ", department=" + department + ", manager=" + manager
-				+ ", teamMembers=" + Arrays.toString(teamMembers) + ", position=" + position + ", canAccess="
-				+ canAccess + "]";
+		return super.toString()+"Staff [sid=" + sid + ", department=" + department + ", manager=" + manager + ", teamMembers="
+				+ teamMembers + ", position=" + position + ", canAccess=" + canAccess + "]";
 	}
-
 }

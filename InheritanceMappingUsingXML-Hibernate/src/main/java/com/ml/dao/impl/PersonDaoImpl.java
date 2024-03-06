@@ -10,17 +10,17 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ml.client.SavePerson;
 import com.ml.dao.PersonDao;
 import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
 import com.ml.entity.Person;
-import com.ml.utilities.DatabaseUtility;
+import com.ml.utilities.DatabaseUtil;
+import java.util.Collections;
 
 public class PersonDaoImpl implements PersonDao {
 
-	private static final SessionFactory factory = DatabaseUtility.getSessionFactory();
-	private static final Logger LOGGER = LoggerFactory.getLogger(PersonDaoImpl.class);
+	private static final SessionFactory factory = DatabaseUtil.getSessionFactory();
+	private static final Logger LOG = LoggerFactory.getLogger(PersonDaoImpl.class);
 
 	@Override
 	public void savePerson(Person person) {
@@ -28,6 +28,7 @@ public class PersonDaoImpl implements PersonDao {
 			Session session = factory.openSession();
 			Transaction tx = session.getTransaction();
 			tx.begin();
+			LOG.info("Saving Person instance...");
 			session.save(person);
 			tx.commit();
 			session.close();
@@ -39,69 +40,69 @@ public class PersonDaoImpl implements PersonDao {
 				message = message.append(e.getMessage().toCharArray());
 				cause = cause.getCause();
 			}
-			LOGGER.error(message.toString());
+			LOG.error(message.toString());
 		}
 
 	}
 
 	@Override
-	public Person getPersonById(String id) {
-		// TODO Auto-generated method stub
+	public Person getPersonByPersonId(String pid) {
+
 		return null;
 	}
 
 	@Override
 	public Person getPersonByName(String name) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public List<Person> getPersonByFatherName(String fatherName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByMoherName(String MotherName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Person> getPersonByMoherName(String motherName) {
+
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Person> getPersonByDateOfBirth(String dob) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Person> getPersonByAge(String age) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Person> getPersonByGender(Gender gender) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Person> getPersonByEthnicity(Ethnicity ethnicity) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Person> getPersonByGender(String gender) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Person> getPersonByEthnicity(String ethnicity) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return Collections.emptyList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -116,7 +117,7 @@ public class PersonDaoImpl implements PersonDao {
 			c.add(Restrictions.eq("ethnicity", Ethnicity.ASIAN));
 			c.setMaxResults(10);
 			List<Person> li = c.list();
-			System.out.println(li.size());
+			LOG.info("Fetching list of Person(s)");
 			return li;
 		} catch (Exception e) {
 			String msg = e.getMessage();
@@ -126,9 +127,9 @@ public class PersonDaoImpl implements PersonDao {
 				message = message.append(e.getMessage().toCharArray());
 				cause = cause.getCause();
 			}
-			LOGGER.error(message.toString());
-			
-			return null;
+			LOG.error(message.toString());
+
+			return Collections.emptyList();
 		}
 	}
 

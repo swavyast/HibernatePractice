@@ -9,7 +9,7 @@ import com.ml.entity.Gender;
 public interface StaffDao {
 	public void saveStaff(Staff staff);
 
-	public Staff getStaffById(String id);
+	public Staff getStaffByStaffId(String sid);
 
 	public List<Staff> getStaffByName(String name);
 

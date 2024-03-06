@@ -10,13 +10,13 @@ public interface PersonDao {
 
 	public void savePerson(Person person);
 
-	public Person getPersonById(String id);
+	public Person getPersonByPersonId(String pid);
 
 	public Person getPersonByName(String name);
 
 	public List<Person> getPersonByFatherName(String fatherName);
 
-	public List<Person> getPersonByMoherName(String MotherName);
+	public List<Person> getPersonByMoherName(String motherName);
 
 	public List<Person> getPersonByDateOfBirth(String dob);
 

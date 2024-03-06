@@ -9,13 +9,13 @@ import com.ml.entity.Employee;
 public interface EmployeeDao {
 	public void saveEmployee(Employee employee);
 
-	public Employee getEmployeeById(String id);
+	public Employee getEmployeeByEmployeeId(String eid);
 
 	public Employee getEmployeeByName(String name);
 
 	public List<Employee> getEmployeeByFatherName(String fatherName);
 
-	public List<Employee> getEmployeeByMoherName(String MotherName);
+	public List<Employee> getEmployeeByMoherName(String motherName);
 
 	public List<Employee> getEmployeeByDateOfBirth(String dob);
 

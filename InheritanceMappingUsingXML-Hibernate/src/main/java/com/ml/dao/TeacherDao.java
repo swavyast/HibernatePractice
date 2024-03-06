@@ -12,16 +12,16 @@ public interface TeacherDao {
 
 	public void saveTeacher(Teacher teacher);
 
-	public Teacher getTeacherById(String id);
+	public Teacher getTeacherByTeacherId(String tid);
 
 	public List<Teacher> getTeacherByName(String name);
 
 	public List<Teacher> getTeacherByDepartment(String department);
-	
+
 	public List<Teacher> getTeacherBySpecialities(Subject specialities);
-	
+
 	public List<Teacher> getTeacherByClassroom(String classRoom);
-	
+
 	public List<Teacher> getTeacherByModeOfTeaching(ModeOfTeaching modeOfTeaching);
 
 	public String getManagerName(Teacher teacher);

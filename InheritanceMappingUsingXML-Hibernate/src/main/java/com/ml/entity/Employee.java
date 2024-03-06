@@ -2,7 +2,7 @@ package com.ml.entity;
 
 public class Employee extends Person {
 
-	private String employeeId;
+	private String eid;
 	private Double salary;
 	private Double bonus;
 	private Integer annualLeaves;
@@ -43,12 +43,12 @@ public class Employee extends Person {
 		this.leaveWithoutPay = emp.leaveWithoutPay;
 	}
 
-	public String getEmployeeId() {
-		return employeeId;
+	public String getEid() {
+		return eid;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setEid(String eid) {
+		this.eid = eid;
 	}
 
 	public Double getSalary() {
@@ -85,8 +85,8 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return super.toString() + " [employeeId=" + employeeId + ", salary=" + salary + ", bonus=" + bonus
-				+ ", annualLeaves=" + annualLeaves + ", leaveWithoutPay=" + leaveWithoutPay + "]";
+		return super.toString()+"Employee [eid=" + eid + ", salary=" + salary + ", bonus=" + bonus + ", annualLeaves=" + annualLeaves
+				+ ", leaveWithoutPay=" + leaveWithoutPay + "]";
 	}
 
 }

@@ -2,7 +2,7 @@ package com.ml.entity;
 
 public class Person {
 
-	private String id;
+	private String pid;
 	private String name;
 	private String fatherName;
 	private String motherName;
@@ -36,12 +36,12 @@ public class Person {
 		this.ethnicity = p.ethnicity;
 	}
 
-	public String getId() {
-		return id;
+	public String getPid() {
+		return pid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 
 	public String getName() {
@@ -102,7 +102,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", fatherName=" + fatherName + ", motherName=" + motherName
+		return "Person [pid=" + pid + ", name=" + name + ", fatherName=" + fatherName + ", motherName=" + motherName
 				+ ", dob=" + dob + ", age=" + age + ", gender=" + gender + ", ethnicity=" + ethnicity + "]";
 	}
 

@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ml.dao.TeacherDao;
 import com.ml.dao.impl.TeacherDaoImpl;
 import com.ml.entity.Ethnicity;
@@ -14,6 +17,8 @@ import com.ml.entity.Subject;
 import com.ml.entity.Teacher;
 
 public class SaveTeacher {
+
+	private static final Logger LOG = LoggerFactory.getLogger(SaveTeacher.class);
 
 	public static void main(String[] args) {
 		TeacherDao tdao = new TeacherDaoImpl();
@@ -31,9 +36,8 @@ public class SaveTeacher {
 		teacher.setLeaveWithoutPay(30);
 		teacher.setDepartment("IT/Software");
 		teacher.setPosition("Java Developer");
-		teacher.setReportsTo("Manager");
-		teacher.setTeamMembers(
-				Arrays.asList("Abhijeet Singh", "Animesh Prajapati", "Munn Jangid").toArray(new String[0]));
+		teacher.setManager("Manager");
+		teacher.setTeamMembers(Arrays.asList("Abhijeet Singh", "Animesh Prajapati", "Munn Jangid"));
 		Set<String> set = new HashSet<>();
 		set.add("ClassRoom");
 		set.add("Admin Cell");
@@ -44,9 +48,11 @@ public class SaveTeacher {
 		teacher.setCanAccess(set);
 		List<Subject> specs = Arrays.asList(Subject.SCIENCE, Subject.STATISTICS, Subject.MATHEMATICS);
 		teacher.setSpecialities(specs);
-		String[] classrooms = Arrays.asList("CR-A101", "CR-B306", "CR-C002").toArray(new String[0]);
+		List<String> classrooms = Arrays.asList("CR-A101", "CR-B306", "CR-C002");
 		teacher.setClassRoom(classrooms);
 		teacher.setModeOfTeaching(ModeOfTeaching.OFFLINE);
+		if (LOG.isInfoEnabled())
+			LOG.info("TEACHER : {}", teacher);
 		tdao.saveTeacher(teacher);
 	}
 

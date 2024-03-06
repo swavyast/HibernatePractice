@@ -1,76 +1,75 @@
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.ml.entity">
 
-<!-- Person class mapping -->
-    <class name="Person" table="person">
-        <id name="id" column="id" type="string">
-            <generator class="uuid"></generator>
-        </id>
-        <property name="name" column="name" type="string"></property>
-        <property name="fatherName" column="father" type="string"></property>
-        <property name="motherName" column="mother" type="string"></property>
-        <property name="dob" column="dob" type="string"></property>
-        <property name="age" column="age" type="string"></property>
-        <property name="gender" column="gender">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ml.entity.Gender</param>
-            </type>
-        </property>
-        <property name="ethnicity" column="ethnicity">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ml.entity.Ethnicity</param>
-            </type>
-        </property>
-        
-            
-<!-- Employee class mapping -->
-    <union-subclass name="Employee" table="employee">
-        <property name="salary" column="salary" type="double"></property>
-        <property name="bonus" column="bonus" type="double"></property>
-        <property name="annualLeaves" column="al" type="integer"></property>
-        <property name="leaveWithoutPay" column="lwp" type="integer"></property>
-    </union-subclass>
-    
-        <!-- Staff class mapping -->
-    <union-subclass name="Staff" table="staff">
-        <property name="department" column="dept" type="string"></property>
-        <property name="reportsTo" column="reportsTo" type="string"></property>
-        <array name="teamMembers" table="teamMembers">
-            <key column="id"></key>
-            <index column="memberIndex"></index>
-            <element column="member" type="string"></element>
-        </array>
-        <property name="position" column="position" type="string"></property>
-        <set name="canAccess" table="facilities">
-            <key column="id"></key>
-            <element column="facility" type="string"></element>
-        </set>
-    </union-subclass>
-    <!-- Teacher class mapping -->
-    <union-subclass>
-        <list name="specialities" table="specialities">
-            <key column="id"></key>
-            <list-index column="spSort"></list-index>
-            <element column="subject">
-                    <type name="org.hibernate.type.EnumType">
-                        <param name="enumClass">com.ml.entity.Subject</param>
-                        <param name="useNamed">true</param>
-                    </type>
-            </element>
-        </list>
-        <array name="classRoom">
-            <key column="id"></key>
-            <index column="classIndex"></index>
-            <element column="class" type="string"></element>
-        </array>
-        <property name="modeOfTeaching" column="mode">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.ml.entity.ModeOfTeaching</param>
-            </type>
-        </property>
-    </union-subclass>
-    
-    
-    </class>
+	<!-- Person class mapping -->
+	<class name="Person" table="person">
+		<id name="id" column="id" type="string">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="name" column="name" type="string"></property>
+		<property name="fatherName" column="father" type="string"></property>
+		<property name="motherName" column="mother" type="string"></property>
+		<property name="dob" column="dob" type="string"></property>
+		<property name="age" column="age" type="string"></property>
+		<property name="gender" column="gender">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.ml.entity.Gender</param>
+			</type>
+		</property>
+		<property name="ethnicity" column="ethnicity">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.ml.entity.Ethnicity</param>
+			</type>
+		</property>
+
+
+		<!-- Employee class mapping -->
+		<union-subclass name="Employee" table="employee">
+			<property name="salary" column="salary" type="double"></property>
+			<property name="bonus" column="bonus" type="double"></property>
+			<property name="annualLeaves" column="al" type="integer"></property>
+			<property name="leaveWithoutPay" column="lwp" type="integer"></property>
+		</union-subclass>
+
+		<!-- Staff class mapping -->
+		<union-subclass name="Staff" table="staff">
+			<property name="department" column="dept" type="string"></property>
+			<property name="reportsTo" column="reportsTo" type="string"></property>
+			<array name="teamMembers" table="teamMembers">
+				<key column="id"></key>
+				<index column="memberIndex"></index>
+				<element column="member" type="string"></element>
+			</array>
+			<property name="position" column="position" type="string"></property>
+			<set name="canAccess" table="facilities">
+				<key column="id"></key>
+				<element column="facility" type="string"></element>
+			</set>
+		</union-subclass>
+		<!-- Teacher class mapping -->
+		<union-subclass>
+			<list name="specialities" table="specialities">
+				<key column="id"></key>
+				<list-index column="spSort"></list-index>
+				<element column="subject">
+					<type name="org.hibernate.type.EnumType">
+						<param name="enumClass">com.ml.entity.Subject</param>
+						<param name="useNamed">true</param>
+					</type>
+				</element>
+			</list>
+			<array name="classRoom">
+				<key column="id"></key>
+				<index column="classIndex"></index>
+				<element column="class" type="string"></element>
+			</array>
+			<property name="modeOfTeaching" column="mode">
+				<type name="org.hibernate.type.EnumType">
+					<param name="enumClass">com.ml.entity.ModeOfTeaching</param>
+				</type>
+			</property>
+		</union-subclass>
+
+
+	</class>
 </hibernate-mapping>
