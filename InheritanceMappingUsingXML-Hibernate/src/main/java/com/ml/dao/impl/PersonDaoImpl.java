@@ -46,7 +46,7 @@ public class PersonDaoImpl implements PersonDao {
 			LOG.error("exception occurred while saving person instance.");
 			DatabaseUtilities.getDetailedStackTrace(e);
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 
@@ -132,7 +132,7 @@ public class PersonDaoImpl implements PersonDao {
 
 			return Collections.emptyList();
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 	}

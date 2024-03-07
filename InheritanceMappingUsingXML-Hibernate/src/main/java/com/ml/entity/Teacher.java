@@ -1,7 +1,6 @@
 package com.ml.entity;
 
 import java.util.List;
-import java.util.Set;
 
 public class Teacher extends Staff {
 

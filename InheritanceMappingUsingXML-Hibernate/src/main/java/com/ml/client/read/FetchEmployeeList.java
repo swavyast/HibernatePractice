@@ -14,6 +14,7 @@ public class FetchEmployeeList {
 	private static final Logger LOG = LoggerFactory.getLogger(FetchEmployeeList.class);
 
 	public static void main(String[] args) {
+		
 		EmployeeDao dao = new EmployeeDaoImpl();
 		List<Employee> list = dao.getAllEmployees();
 		list.stream().forEach(p -> LOG.info(p.toString()));

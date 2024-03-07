@@ -43,7 +43,7 @@ public class TeacherDaoImpl implements TeacherDao {
 			LOG.error("exception occurred while saving teacher instance");
 			DatabaseUtilities.getDetailedStackTrace(e);
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 
@@ -170,7 +170,7 @@ public class TeacherDaoImpl implements TeacherDao {
 
 			return Collections.emptyList();
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 	}

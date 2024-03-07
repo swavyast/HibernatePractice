@@ -70,8 +70,8 @@
         </list>
         <list name="classRoom" table="class_rooms">
             <key column="tid" />
-            <list-index column="class_index" />
-            <element column="class_name" type="string" />
+            <list-index column="classIndex" />
+            <element column="className" type="string" />
         </list>
         <property name="modeOfTeaching" column="mode">
             <type name="org.hibernate.type.EnumType">

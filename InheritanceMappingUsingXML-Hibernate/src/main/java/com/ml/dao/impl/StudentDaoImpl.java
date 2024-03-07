@@ -44,7 +44,7 @@ public class StudentDaoImpl implements StudentDao {
 			LOG.error(FATAL, "Exception occured while saving student instance.");
 			DatabaseUtilities.getDetailedStackTrace(e);
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 
@@ -146,7 +146,7 @@ public class StudentDaoImpl implements StudentDao {
 
 			return Collections.emptyList();
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 	}

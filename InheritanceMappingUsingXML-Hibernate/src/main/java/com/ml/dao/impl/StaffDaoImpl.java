@@ -47,7 +47,7 @@ public class StaffDaoImpl implements StaffDao {
 			LOG.error("exception occurred while saving staff instance");
 			DatabaseUtilities.getDetailedStackTrace(e);
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 
@@ -156,7 +156,7 @@ public class StaffDaoImpl implements StaffDao {
 
 			return Collections.emptyList();
 		} finally {
-			if (session != null && (session.isOpen()))
+			if (session != null && session.isOpen())
 				session.close();
 		}
 	}
