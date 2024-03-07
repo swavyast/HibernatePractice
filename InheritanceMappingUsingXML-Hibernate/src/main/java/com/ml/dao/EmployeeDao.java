@@ -13,21 +13,21 @@ public interface EmployeeDao {
 
 	public Employee getEmployeeByName(String name);
 
-	public List<Employee> getEmployeeByFatherName(String fatherName);
+	public List<Employee> getEmployeeListByFatherName(String fatherName);
 
-	public List<Employee> getEmployeeByMoherName(String motherName);
+	public List<Employee> getEmployeeListByMotherName(String motherName);
 
-	public List<Employee> getEmployeeByDateOfBirth(String dob);
+	public List<Employee> getEmployeeListByDateOfBirth(String dob);
 
-	public List<Employee> getEmployeeByAge(String age);
+	public List<Employee> getEmployeeListByAge(String age);
 
-	public List<Employee> getEmployeeByGender(Gender gender);
+	public List<Employee> getEmployeeListByGender(Gender gender);
 
-	public List<Employee> getEmployeeByEthnicity(Ethnicity ethnicity);
+	public List<Employee> getEmployeeListByEthnicity(Ethnicity ethnicity);
 
-	public List<Employee> getEmployeeByGender(String gender);
+	public List<Employee> getEmployeeListByGender(String gender);
 
-	public List<Employee> getEmployeeByEthnicity(String ethnicity);
+	public List<Employee> getEmployeeListByEthnicity(String ethnicity);
 
-	public List<Employee> getAllEmployee();
+	public List<Employee> getAllEmployees();
 }

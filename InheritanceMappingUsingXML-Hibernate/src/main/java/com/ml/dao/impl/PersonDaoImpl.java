@@ -2,11 +2,9 @@ package com.ml.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,32 +13,41 @@ import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
 import com.ml.entity.Person;
 import com.ml.utilities.DatabaseUtil;
+import com.ml.utilities.DatabaseUtilities;
+
 import java.util.Collections;
 
 public class PersonDaoImpl implements PersonDao {
 
-	private static final SessionFactory factory = DatabaseUtil.getSessionFactory();
+	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
+	private Session session;
+	private Transaction tx;
 	private static final Logger LOG = LoggerFactory.getLogger(PersonDaoImpl.class);
 
 	@Override
 	public void savePerson(Person person) {
 		try {
-			Session session = factory.openSession();
-			Transaction tx = session.getTransaction();
-			tx.begin();
-			LOG.info("Saving Person instance...");
-			session.save(person);
-			tx.commit();
-			session.close();
-		} catch (Exception e) {
-			String msg = e.getMessage();
-			StringBuilder message = new StringBuilder(msg);
-			Throwable cause = e.getCause();
-			while (cause != null) {
-				message = message.append(e.getMessage().toCharArray());
-				cause = cause.getCause();
+			if (person != null && FACTORY != null) {
+				session = FACTORY.getCurrentSession();
+				tx = session.getTransaction();
+				tx.begin();
+				LOG.info("saving personal details...");
+				session.save(person);
+				tx.commit();
+			} else {
+				if (person == null)
+					LOG.error("person instance is null...");
+				if (FACTORY == null)
+					LOG.error("factory instance is null. session factory may not have been initialized properly.");
 			}
-			LOG.error(message.toString());
+		} catch (Exception e) {
+			if (tx != null && !tx.wasCommitted())
+				tx.rollback();
+			LOG.error("exception occurred while saving person instance.");
+			DatabaseUtilities.getDetailedStackTrace(e);
+		} finally {
+			if (session != null && (session.isOpen()))
+				session.close();
 		}
 
 	}
@@ -58,79 +65,91 @@ public class PersonDaoImpl implements PersonDao {
 	}
 
 	@Override
-	public List<Person> getPersonByFatherName(String fatherName) {
+	public List<Person> getPeopleByFatherName(String fatherName) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByMoherName(String motherName) {
+	public List<Person> getPeopleByMotherName(String motherName) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByDateOfBirth(String dob) {
+	public List<Person> getPeopleByDateOfBirth(String dob) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByAge(String age) {
+	public List<Person> getPeopleByAge(String age) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByGender(Gender gender) {
+	public List<Person> getPeopleByGender(Gender gender) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByEthnicity(Ethnicity ethnicity) {
+	public List<Person> getPeopleByEthnicity(Ethnicity ethnicity) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByGender(String gender) {
+	public List<Person> getPeopleByGender(String gender) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Person> getPersonByEthnicity(String ethnicity) {
+	public List<Person> getPeopleByEthnicity(String ethnicity) {
 
 		return Collections.emptyList();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Person> getAllPerson() {
+	public List<Person> getAllPeople() {
 		try {
-			Session session = factory.openSession();
-			Transaction tx = session.getTransaction();
+			session = FACTORY.getCurrentSession();
+			tx = session.getTransaction();
 			tx.begin();
-			Criteria c = session.createCriteria(Person.class);
-			c.add(Restrictions.eq("gender", Gender.MALE));
-			c.add(Restrictions.eq("ethnicity", Ethnicity.ASIAN));
-			c.setMaxResults(10);
-			List<Person> li = c.list();
+			@SuppressWarnings("unchecked")
+			List<Person> li = session.createCriteria(Person.class).list();
+			if (!tx.wasCommitted())
+				tx.commit();
 			LOG.info("Fetching list of Person(s)");
 			return li;
 		} catch (Exception e) {
-			String msg = e.getMessage();
-			StringBuilder message = new StringBuilder(msg);
-			Throwable cause = e.getCause();
-			while (cause != null) {
-				message = message.append(e.getMessage().toCharArray());
-				cause = cause.getCause();
-			}
-			LOG.error(message.toString());
+			if (tx != null && !tx.wasCommitted())
+				tx.rollback();
+			LOG.error("Exception occured while fetching Persons' list");
+			DatabaseUtilities.getDetailedStackTrace(e);
 
 			return Collections.emptyList();
+		} finally {
+			if (session != null && (session.isOpen()))
+				session.close();
 		}
+	}
+
+	public static <T extends Person> void savePersonalDetails(T t) {
+		if (t != null && hasPersonalDetails(t)) {
+
+			Person p = new Person(t.getName(), t.getFatherName(), t.getMotherName(), t.getDob(), t.getAge(),
+					t.getGender(), t.getEthnicity());
+			new PersonDaoImpl().savePerson(p);
+		}
+	}
+
+	private static <T extends Person> boolean hasPersonalDetails(T t) {
+
+		return t.getName() != null && t.getFatherName() != null && t.getMotherName() != null && t.getDob() != null
+				&& t.getAge() != null && t.getGender() != null && t.getEthnicity() != null;
 	}
 
 }

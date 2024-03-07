@@ -14,21 +14,21 @@ public interface PersonDao {
 
 	public Person getPersonByName(String name);
 
-	public List<Person> getPersonByFatherName(String fatherName);
+	public List<Person> getPeopleByFatherName(String fatherName);
 
-	public List<Person> getPersonByMoherName(String motherName);
+	public List<Person> getPeopleByMotherName(String motherName);
 
-	public List<Person> getPersonByDateOfBirth(String dob);
+	public List<Person> getPeopleByDateOfBirth(String dob);
 
-	public List<Person> getPersonByAge(String age);
+	public List<Person> getPeopleByAge(String age);
 
-	public List<Person> getPersonByGender(Gender gender);
+	public List<Person> getPeopleByGender(Gender gender);
 
-	public List<Person> getPersonByEthnicity(Ethnicity ethnicity);
+	public List<Person> getPeopleByEthnicity(Ethnicity ethnicity);
 
-	public List<Person> getPersonByGender(String gender);
+	public List<Person> getPeopleByGender(String gender);
 
-	public List<Person> getPersonByEthnicity(String ethnicity);
+	public List<Person> getPeopleByEthnicity(String ethnicity);
 
-	public List<Person> getAllPerson();
+	public List<Person> getAllPeople();
 }

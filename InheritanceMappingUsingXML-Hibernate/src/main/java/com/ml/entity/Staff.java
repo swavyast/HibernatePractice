@@ -16,38 +16,8 @@ public class Staff extends Employee {
 		// default constructor
 	}
 
-	public Staff(Person p, Employee e, Staff s) {
-		super(p, e);
-		this.department = s.department;
-		this.manager = s.manager;
-		this.teamMembers = s.teamMembers;
-		this.position = s.position;
-		this.canAccess = s.canAccess;
-	}
-
-	public Staff(Person p, Employee emp, String department, String manager, List<String> teamMembers, String position,
-			Set<String> canAccess) {
-		super(p, emp);
-		this.department = department;
-		this.manager = manager;
-		this.teamMembers = teamMembers;
-		this.position = position;
-		this.canAccess = canAccess;
-	}
-
 	public Staff(String department, String manager, List<String> teamMembers, String position, Set<String> canAccess) {
 		super();
-		this.department = department;
-		this.manager = manager;
-		this.teamMembers = teamMembers;
-		this.position = position;
-		this.canAccess = canAccess;
-	}
-
-	public Staff(String name, String fatherName, String motherName, String dob, String age, Gender gender,
-			Ethnicity ethnicity, Double salary, Double bonus, Integer annualLeaves, Integer leaveWithoutPay,
-			String department, String manager, List<String> teamMembers, String position, Set<String> canAccess) {
-		super(name, fatherName, motherName, dob, age, gender, ethnicity, salary, bonus, annualLeaves, leaveWithoutPay);
 		this.department = department;
 		this.manager = manager;
 		this.teamMembers = teamMembers;
@@ -105,7 +75,7 @@ public class Staff extends Employee {
 
 	@Override
 	public String toString() {
-		return super.toString()+"Staff [sid=" + sid + ", department=" + department + ", manager=" + manager + ", teamMembers="
+		return "Staff [sid=" + sid + ", department=" + department + ", manager=" + manager + ", teamMembers="
 				+ teamMembers + ", position=" + position + ", canAccess=" + canAccess + "]";
 	}
 }

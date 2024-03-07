@@ -1,7 +1,5 @@
 package com.ml.utilities;
 
-import java.util.Optional;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
@@ -27,21 +25,13 @@ public class DatabaseUtil {
 		} catch (Exception e) {
 			LOG.error(FATAL,
 					"Exception occurred while creating a session factory, Factory may not have been initialized properly.");
-			Throwable cause = null;
-			String msg = null;
-			Optional<Throwable> op = Optional.ofNullable(e);
-			while (op.isPresent()) {
-				cause = op.get();
-				msg = cause.getMessage();
-				LOG.error(msg);
-				op = Optional.ofNullable(cause.getCause());
-			}
-			e.printStackTrace();
+
+			DatabaseUtilities.getDetailedStackTrace(e);
 		}
 	}
 
 	public static SessionFactory getSessionFactory() {
-		LOG.info("Invoking DatabaseUtility.getSessionFactory() method...");
+		LOG.info("Invoking DatabaseUtil.getSessionFactory() method...");
 		return factory;
 	}
 }

@@ -1,6 +1,5 @@
 package com.ml.dao.impl;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,52 +10,41 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ml.dao.TeacherDao;
-import com.ml.entity.Employee;
 import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
 import com.ml.entity.ModeOfTeaching;
-import com.ml.entity.Person;
-import com.ml.entity.Staff;
 import com.ml.entity.Subject;
 import com.ml.entity.Teacher;
 import com.ml.utilities.DatabaseUtil;
+import com.ml.utilities.DatabaseUtilities;
 
 public class TeacherDaoImpl implements TeacherDao {
 
 	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
+	private Session session;
+	private Transaction tx;
 	private static final Logger LOG = LoggerFactory.getLogger(TeacherDaoImpl.class);
 
 	@Override
 	public void saveTeacher(Teacher teacher) {
 		try {
-			Session session = FACTORY.openSession();
-			Transaction tx = session.getTransaction();
-			/*
-			 * Person p = new Person(teacher.getName(), teacher.getDob(), teacher.getAge(),
-			 * teacher.getFatherName(), teacher.getMotherName(), teacher.getGender(),
-			 * teacher.getEthnicity()); Employee emp = new Employee(p, teacher.getSalary(),
-			 * teacher.getBonus(), teacher.getAnnualLeaves(), teacher.getLeaveWithoutPay());
-			 * Staff staff = new Staff(p, emp, teacher.getDepartment(),
-			 * teacher.getManager(), teacher.getTeamMembers(), teacher.getPosition(),
-			 * teacher.getCanAccess()); LOG.
-			 * info("Saving staff instance along with it's personal records and employment details"
-			 * ); new StaffDaoImpl().saveStaff(staff);
-			 */
+			PersonDaoImpl.savePersonalDetails(teacher);
+			EmployeeDaoImpl.saveEmploymentDetails(teacher);
+			StaffDaoImpl.saveStaffDetails(teacher);
+			session = FACTORY.getCurrentSession();
+			tx = session.getTransaction();
 			tx.begin();
-			Serializable s = session.save(teacher);
-			if (LOG.isInfoEnabled())
-				LOG.info(s.toString());
+			LOG.info("saving teacher instance...");
+			session.save(teacher);
 			tx.commit();
-			session.close();
 		} catch (Exception e) {
-			String msg = e.getMessage();
-			StringBuilder message = new StringBuilder(msg);
-			Throwable cause = e.getCause();
-			while (cause != null) {
-				message = message.append(e.getMessage().toCharArray());
-				cause = cause.getCause();
-			}
-			LOG.error(message.toString());
+			if (tx != null && !tx.wasCommitted())
+				tx.rollback();
+			LOG.error("exception occurred while saving teacher instance");
+			DatabaseUtilities.getDetailedStackTrace(e);
+		} finally {
+			if (session != null && (session.isOpen()))
+				session.close();
 		}
 
 	}
@@ -68,45 +56,9 @@ public class TeacherDaoImpl implements TeacherDao {
 	}
 
 	@Override
-	public List<Teacher> getTeacherByName(String name) {
-
-		return Collections.emptyList();
-	}
-
-	@Override
-	public List<Teacher> getTeacherByDepartment(String department) {
-
-		return Collections.emptyList();
-	}
-
-	@Override
-	public List<Teacher> getTeacherBySpecialities(Subject specialities) {
-
-		return Collections.emptyList();
-	}
-
-	@Override
-	public List<Teacher> getTeacherByClassroom(String classRoom) {
-
-		return Collections.emptyList();
-	}
-
-	@Override
-	public List<Teacher> getTeacherByModeOfTeaching(ModeOfTeaching modeOfTeaching) {
-
-		return Collections.emptyList();
-	}
-
-	@Override
 	public String getManagerName(Teacher teacher) {
 
 		return null;
-	}
-
-	@Override
-	public List<Teacher> getTeacherByPosition(String position) {
-
-		return Collections.emptyList();
 	}
 
 	@Override
@@ -116,57 +68,111 @@ public class TeacherDaoImpl implements TeacherDao {
 	}
 
 	@Override
-	public List<Teacher> getTeacherByFatherName(String fatherName) {
+	public List<Teacher> getTeacherListByName(String name) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByMotherName(String motherName) {
+	public List<Teacher> getTeacherListByDepartment(String department) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByDateOfBirth(String dob) {
+	public List<Teacher> getTeacherListBySpecialities(Subject specialities) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByAge(String age) {
+	public List<Teacher> getTeacherListByClassroom(String classRoom) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByGender(Gender gender) {
+	public List<Teacher> getTeacherListByModeOfTeaching(ModeOfTeaching modeOfTeaching) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByEthnicity(Ethnicity ethnicity) {
+	public List<Teacher> getTeacherListByPosition(String position) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByGender(String gender) {
+	public List<Teacher> getTeacherListByFatherName(String fatherName) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Teacher> getTeacherByEthnicity(String ethnicity) {
+	public List<Teacher> getTeacherListByMotherName(String motherName) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Teacher> getTeacherListByDateOfBirth(String dob) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Teacher> getTeacherListByAge(String age) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Teacher> getTeacherListByGender(Gender gender) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Teacher> getTeacherListByEthnicity(Ethnicity ethnicity) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Teacher> getTeacherListByGender(String gender) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Teacher> getTeacherListByEthnicity(String ethnicity) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Teacher> getAllTeachers() {
+		try {
+			session = FACTORY.getCurrentSession();
+			tx = session.getTransaction();
+			tx.begin();
+			@SuppressWarnings("unchecked")
+			List<Teacher> li = session.createCriteria(Teacher.class).list();
+			tx.commit();
+			LOG.info("Fetching list of Teacher(s)");
+			return li;
+		} catch (Exception e) {
+			if (tx != null && !tx.wasCommitted())
+				tx.rollback();
+			LOG.error("Exception occured while fetching Teachers' list");
+			DatabaseUtilities.getDetailedStackTrace(e);
 
-		return Collections.emptyList();
+			return Collections.emptyList();
+		} finally {
+			if (session != null && (session.isOpen()))
+				session.close();
+		}
 	}
 
 }

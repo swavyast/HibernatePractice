@@ -14,37 +14,37 @@ public interface TeacherDao {
 
 	public Teacher getTeacherByTeacherId(String tid);
 
-	public List<Teacher> getTeacherByName(String name);
+	public List<Teacher> getTeacherListByName(String name);
 
-	public List<Teacher> getTeacherByDepartment(String department);
+	public List<Teacher> getTeacherListByDepartment(String department);
 
-	public List<Teacher> getTeacherBySpecialities(Subject specialities);
+	public List<Teacher> getTeacherListBySpecialities(Subject specialities);
 
-	public List<Teacher> getTeacherByClassroom(String classRoom);
+	public List<Teacher> getTeacherListByClassroom(String classRoom);
 
-	public List<Teacher> getTeacherByModeOfTeaching(ModeOfTeaching modeOfTeaching);
+	public List<Teacher> getTeacherListByModeOfTeaching(ModeOfTeaching modeOfTeaching);
 
 	public String getManagerName(Teacher teacher);
 
-	public List<Teacher> getTeacherByPosition(String position);
+	public List<Teacher> getTeacherListByPosition(String position);
 
 	public List<String> getAllTeamMembers(Teacher teacher);
 
-	public List<Teacher> getTeacherByFatherName(String fatherName);
+	public List<Teacher> getTeacherListByFatherName(String fatherName);
 
-	public List<Teacher> getTeacherByMotherName(String motherName);
+	public List<Teacher> getTeacherListByMotherName(String motherName);
 
-	public List<Teacher> getTeacherByDateOfBirth(String dob);
+	public List<Teacher> getTeacherListByDateOfBirth(String dob);
 
-	public List<Teacher> getTeacherByAge(String age);
+	public List<Teacher> getTeacherListByAge(String age);
 
-	public List<Teacher> getTeacherByGender(Gender gender);
+	public List<Teacher> getTeacherListByGender(Gender gender);
 
-	public List<Teacher> getTeacherByEthnicity(Ethnicity ethnicity);
+	public List<Teacher> getTeacherListByEthnicity(Ethnicity ethnicity);
 
-	public List<Teacher> getTeacherByGender(String gender);
+	public List<Teacher> getTeacherListByGender(String gender);
 
-	public List<Teacher> getTeacherByEthnicity(String ethnicity);
+	public List<Teacher> getTeacherListByEthnicity(String ethnicity);
 
 	public List<Teacher> getAllTeachers();
 }

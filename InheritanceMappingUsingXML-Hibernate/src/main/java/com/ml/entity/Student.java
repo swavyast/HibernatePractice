@@ -13,6 +13,12 @@ public class Student extends Person {
 		// default constructor
 	}
 
+	public Student(String name, String fatherName, String motherName, String dob, String age, Gender gender,
+			Ethnicity ethnicity) {
+		super(name, fatherName, motherName, dob, age, gender, ethnicity);
+
+	}
+
 	public Student(String email, String enrollmentId, String batch, String displayPicture, String marksheet) {
 		super();
 		this.email = email;
@@ -72,7 +78,7 @@ public class Student extends Person {
 
 	@Override
 	public String toString() {
-		return super.toString() + "[studentId=" + studentId + ", email=" + email + ", enrollmentId=" + enrollmentId
+		return "Student [studentId=" + studentId + ", email=" + email + ", enrollmentId=" + enrollmentId
 				+ ", batch=" + batch + ", displayPicture=" + displayPicture + ", marksheet=" + marksheet + "]";
 	}
 

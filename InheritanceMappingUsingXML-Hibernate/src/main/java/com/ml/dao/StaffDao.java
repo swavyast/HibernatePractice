@@ -11,31 +11,31 @@ public interface StaffDao {
 
 	public Staff getStaffByStaffId(String sid);
 
-	public List<Staff> getStaffByName(String name);
+	public List<Staff> getStaffListByName(String name);
 
-	public List<Staff> getStaffByDepartment(String department);
+	public List<Staff> getStaffListByDepartment(String department);
 
 	public String getManagerName(Staff staff);
 
-	public List<Staff> getStaffByPosition(String position);
+	public List<Staff> getStaffListByPosition(String position);
 
 	public List<String> getAllTeamMembers(Staff staff);
 
-	public List<Staff> getStaffByFatherName(String fatherName);
+	public List<Staff> getStaffListByFatherName(String fatherName);
 
-	public List<Staff> getStaffByMotherName(String motherName);
+	public List<Staff> getStaffListByMotherName(String motherName);
 
-	public List<Staff> getStaffByDateOfBirth(String dob);
+	public List<Staff> getStaffListByDateOfBirth(String dob);
 
-	public List<Staff> getStaffByAge(String age);
+	public List<Staff> getStaffListByAge(String age);
 
-	public List<Staff> getStaffByGender(Gender gender);
+	public List<Staff> getStaffListByGender(Gender gender);
 
-	public List<Staff> getStaffByEthnicity(Ethnicity ethnicity);
+	public List<Staff> getStaffListByEthnicity(Ethnicity ethnicity);
 
-	public List<Staff> getStaffByGender(String gender);
+	public List<Staff> getStaffListByGender(String gender);
 
-	public List<Staff> getStaffByEthnicity(String ethnicity);
+	public List<Staff> getStaffListByEthnicity(String ethnicity);
 
-	public List<Staff> getAllStaff();
+	public List<Staff> getAllStaffs();
 }

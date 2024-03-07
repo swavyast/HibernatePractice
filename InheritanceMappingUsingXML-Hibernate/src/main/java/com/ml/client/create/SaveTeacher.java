@@ -1,4 +1,4 @@
-package com.ml.client;
+package com.ml.client.create;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -52,7 +52,7 @@ public class SaveTeacher {
 		teacher.setClassRoom(classrooms);
 		teacher.setModeOfTeaching(ModeOfTeaching.OFFLINE);
 		if (LOG.isInfoEnabled())
-			LOG.info("TEACHER : {}", teacher);
+			LOG.info("{}", teacher);	//using formatter {}.
 		tdao.saveTeacher(teacher);
 	}
 

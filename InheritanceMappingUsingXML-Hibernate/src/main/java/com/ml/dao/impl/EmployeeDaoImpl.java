@@ -1,6 +1,5 @@
 package com.ml.dao.impl;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,50 +10,47 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ml.dao.EmployeeDao;
-import com.ml.dao.PersonDao;
 import com.ml.entity.Employee;
 import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
-import com.ml.entity.Person;
 import com.ml.utilities.DatabaseUtil;
+import com.ml.utilities.DatabaseUtilities;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
+	private Session session;
+	private Transaction tx;
+
 	private static final Logger LOG = LoggerFactory.getLogger(EmployeeDaoImpl.class);
 
 	@Override
 	public void saveEmployee(Employee employee) {
 
 		try {
-			Session session = FACTORY.openSession();
-			Transaction tx = session.getTransaction();
-			Person p = new Person();
-			PersonDao pdao = new PersonDaoImpl();
-			p.setName(employee.getName());
-			p.setDob(employee.getDob());
-			p.setAge(employee.getAge());
-			p.setEthnicity(employee.getEthnicity());
-			p.setFatherName(employee.getFatherName());
-			p.setGender(employee.getGender());
-			p.setMotherName(employee.getMotherName());
-			LOG.info("Saving Personal Records...");
-			pdao.savePerson(p);
-			tx.begin();
-			Serializable s = session.save(employee);
-			if (LOG.isInfoEnabled())
-				LOG.info(s.toString());
-			tx.commit();
-			session.close();
-		} catch (Exception e) {
-			String msg = e.getMessage();
-			StringBuilder message = new StringBuilder(msg);
-			Throwable cause = e.getCause();
-			while (cause != null) {
-				message = message.append(e.getMessage().toCharArray());
-				cause = cause.getCause();
+			PersonDaoImpl.savePersonalDetails(employee);
+			if (employee != null && FACTORY != null) {
+				session = FACTORY.getCurrentSession();
+				tx = session.getTransaction();
+				tx.begin();
+				LOG.info("saving employment details...");
+				session.save(employee);
+				tx.commit();
+			} else {
+				if (employee == null)
+					LOG.error("employee instance is null...");
+				if (FACTORY == null)
+					LOG.error("factory instance is null. session factory may not have been initialized properly.");
 			}
-			LOG.error(message.toString());
+
+		} catch (Exception e) {
+			if (tx != null && !tx.wasCommitted())
+				tx.rollback();
+			LOG.error("exception occurred while saving employee instance.");
+			DatabaseUtilities.getDetailedStackTrace(e);
+		} finally {
+			if (session != null && (session.isOpen()))
+				session.close();
 		}
 	}
 
@@ -71,57 +67,87 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public List<Employee> getEmployeeByFatherName(String fatherName) {
+	public List<Employee> getEmployeeListByFatherName(String fatherName) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByMoherName(String motherName) {
+	public List<Employee> getEmployeeListByMotherName(String motherName) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByDateOfBirth(String dob) {
+	public List<Employee> getEmployeeListByDateOfBirth(String dob) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByAge(String age) {
+	public List<Employee> getEmployeeListByAge(String age) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByGender(Gender gender) {
+	public List<Employee> getEmployeeListByGender(Gender gender) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByEthnicity(Ethnicity ethnicity) {
+	public List<Employee> getEmployeeListByEthnicity(Ethnicity ethnicity) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByGender(String gender) {
+	public List<Employee> getEmployeeListByGender(String gender) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getEmployeeByEthnicity(String ethnicity) {
+	public List<Employee> getEmployeeListByEthnicity(String ethnicity) {
 
 		return Collections.emptyList();
 	}
 
 	@Override
-	public List<Employee> getAllEmployee() {
-
-		return Collections.emptyList();
+	public List<Employee> getAllEmployees() {
+		try {
+			session = FACTORY.getCurrentSession();
+			tx = session.getTransaction();
+			tx.begin();
+			@SuppressWarnings("unchecked")
+			List<Employee> li = session.createCriteria(Employee.class).list();
+			tx.commit();
+			LOG.info("Fetching list of Employee(s)");
+			return li;
+		} catch (Exception e) {
+			if (tx != null && !tx.wasCommitted())
+				tx.rollback();
+			LOG.error("Exception occured while fetching Employees' list");
+			DatabaseUtilities.getDetailedStackTrace(e);
+			return Collections.emptyList();
+		} finally {
+			if (session != null && (session.isOpen()))
+				session.close();
+		}
 	}
 
+	public static <T extends Employee> void saveEmploymentDetails(T t) {
+		if (t != null && hasEmploymentDetails(t)) {
+			Employee e = new Employee(t.getSalary(), t.getBonus(), t.getAnnualLeaves(), t.getLeaveWithoutPay());
+			new EmployeeDaoImpl().saveEmployee(e);
+		}
+
+	}
+
+	private static <T extends Employee> boolean hasEmploymentDetails(T t) {
+
+		return t.getSalary() != null && t.getBonus() != null && t.getAnnualLeaves() != null
+				&& t.getLeaveWithoutPay() != null;
+	}
 }
