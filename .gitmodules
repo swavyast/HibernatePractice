@@ -1,0 +1,6 @@
+[submodule "./AnnotatedMapping_"]
+	path = ./AnnotatedMapping_
+	url = file:///E:\\git\\HibernatePractice\\AnnotatedMapping
+[submodule "AnnotatedMapping"]
+	path = AnnotatedMapping
+	url = https://github.com/swavyast/AnnotatedMapping
