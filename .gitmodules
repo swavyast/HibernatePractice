@@ -1,6 +1,6 @@
-[submodule "./AnnotatedMapping_"]
-	path = ./AnnotatedMapping_
-	url = file:///E:\\git\\HibernatePractice\\AnnotatedMapping
+[submodule "InheritanceMappingUsingXML-Hibernate"]
+	path = InheritanceMappingUsingXML-Hibernate
+	url = https://github.com/swavyast/InheritanceMappingUsingXML-Hibernate
 [submodule "AnnotatedMapping"]
 	path = AnnotatedMapping
 	url = https://github.com/swavyast/AnnotatedMapping
