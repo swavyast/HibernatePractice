@@ -1,0 +1,2 @@
+# InheritanceMappingUsingXML-Hibernate
+creating InheritanceMappingUsingXML-Hibernate as submodule of HibernatePractice
