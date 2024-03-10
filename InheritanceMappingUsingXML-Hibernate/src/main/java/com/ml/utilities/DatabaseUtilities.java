@@ -17,7 +17,6 @@ public class DatabaseUtilities {
 		Optional.ofNullable(e).ifPresent(ex -> {
 			String msg = ex.getMessage();
 			StringBuilder message = new StringBuilder(msg);
-
 			Throwable cause = ex.getCause();
 			while (cause != null) {
 				message.append(cause.getMessage());

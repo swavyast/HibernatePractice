@@ -1,0 +1,112 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ml.entity">
+<!-- Person class mapping -->
+    <class name="Person" table="person" polymorphism="explicit">
+<!-- If I don't use polymorphism="explicit" clause, hibernate by default is going to
+                 fetch all sub classes along with Person class-->
+        <id name="pid" column="pid" type="string" length="32">
+            <generator class="uuid" />
+        </id>
+        <property name="name" column="name" type="string"></property>
+        <property name="fatherName" column="father" type="string"></property>
+        <property name="motherName" column="mother" type="string"></property>
+        <property name="dob" column="dob" type="string"></property>
+        <property name="age" column="age" type="string"></property>
+        <property name="gender" column="gender">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ml.entity.Gender</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+        <property name="ethnicity" column="ethnicity">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ml.entity.Ethnicity</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+    </class>
+<!-- Employee class mapping -->
+    <class name="Employee" table="employee">
+        <id name="eid" column="eid" type="string" length="32">
+            <generator class="uuid" />
+        </id>
+        <property name="salary" column="salary" type="double"></property>
+        <property name="bonus" column="bonus" type="double"></property>
+        <property name="annualLeaves" column="al" type="integer"></property>
+        <property name="leaveWithoutPay" column="lwp" type="integer"></property>
+    </class>
+<!-- Staff class mapping -->
+    <class name="Staff" table="staff">
+        <id name="sid" column="sid" type="string" length="32">
+            <generator class="uuid" />
+        </id>
+        <property name="department" column="dept" type="string"></property>
+        <property name="manager" column="manager" type="string"></property>
+        <list name="teamMembers" table="teamMembers">
+            <key column="sid" />
+            <list-index column="memberIndex" />
+            <element column="member" type="string"></element>
+        </list>
+        <property name="position" column="position" type="string"></property>
+        <set name="canAccess" table="facilities">
+            <key column="sid" />
+            <element column="facility" type="string" />
+        </set>
+    </class>
+<!--    Teacher class mapping -->
+    <class name="Teacher" table="teacher">
+        <id name="tid" column="tid" type="string" length="32">
+            <generator class="uuid" />
+        </id>
+        <list name="specialities" table="specialities">
+            <key column="tid" />
+            <list-index column="spSort" />
+            <element column="subject">
+                <type name="org.hibernate.type.EnumType">
+                    <param name="enumClass">com.ml.entity.Subject</param>
+                    <param name="useNamed">true</param>
+                </type>
+            </element>
+        </list>
+        <list name="classRoom" table="class_rooms">
+            <key column="tid" />
+            <list-index column="class_index" />
+            <element column="class_name" type="string" />
+        </list>
+        <property name="modeOfTeaching" column="mode">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.ml.entity.ModeOfTeaching</param>
+            </type>
+        </property>
+    </class>
+<!-- Student class mapping -->
+    <class name="Student" table="student">
+        <id name="studentId" column="sid">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="email" column="email" type="string"></property>
+        <property name="enrollmentId" column="enrId" type="string"></property>
+        <property name="batch" column="batch" type="string"></property>
+        <property name="displayPicture" column="dp" type="string"></property>
+        <property name="marksheet" column="marksheet" type="string"></property>
+    </class>
+<!--
+RegularStudent class mapping 
+<union-subclass name="RegularStudent" table="regular_student">
+    <id name="id" column="id" type="string">
+        <generator class="uuid"></generator>
+    </id>
+    <property name="batchName" column="batchName" type="string"></property>
+    <map name="subjectDetails" table="subjectDetails">
+        <key column="id" />
+        <map-key column="subject" type="org.hibernate.type.EnumType" />
+        <composite-element class="Teacher"></composite-element>
+    </map>
+    <property name="modeOfLearning" column="mode">
+        <type name="org.hibernate.type.EnumType">
+            <param name="enumClass">com.ml.entity.ModeOfLearning</param>
+        </type>
+    </property>
+</union-subclass>
+-->
+</hibernate-mapping>

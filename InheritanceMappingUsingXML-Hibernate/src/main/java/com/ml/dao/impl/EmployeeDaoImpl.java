@@ -16,13 +16,13 @@ import com.ml.entity.Gender;
 import com.ml.utilities.DatabaseUtil;
 import com.ml.utilities.DatabaseUtilities;
 
+@SuppressWarnings("unchecked")
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
+	private static final Logger LOG = LoggerFactory.getLogger(EmployeeDaoImpl.class);
 	private Session session;
 	private Transaction tx;
-
-	private static final Logger LOG = LoggerFactory.getLogger(EmployeeDaoImpl.class);
 
 	@Override
 	public void saveEmployee(Employee employee) {
@@ -120,7 +120,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			session = FACTORY.getCurrentSession();
 			tx = session.getTransaction();
 			tx.begin();
-			@SuppressWarnings("unchecked")
 			List<Employee> li = session.createCriteria(Employee.class).list();
 			tx.commit();
 			LOG.info("Fetching list of Employee(s)");
@@ -129,6 +128,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if (tx != null && !tx.wasCommitted())
 				tx.rollback();
 			LOG.error("Exception occured while fetching Employees' list");
+
 			DatabaseUtilities.getDetailedStackTrace(e);
 			return Collections.emptyList();
 		} finally {

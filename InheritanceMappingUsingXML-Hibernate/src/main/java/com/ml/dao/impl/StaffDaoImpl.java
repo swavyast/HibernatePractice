@@ -16,12 +16,13 @@ import com.ml.entity.Staff;
 import com.ml.utilities.DatabaseUtil;
 import com.ml.utilities.DatabaseUtilities;
 
+@SuppressWarnings("unchecked")
 public class StaffDaoImpl implements StaffDao {
 
 	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
+	private static final Logger LOG = LoggerFactory.getLogger(StaffDaoImpl.class);
 	private Session session;
 	private Transaction tx;
-	private static final Logger LOG = LoggerFactory.getLogger(StaffDaoImpl.class);
 
 	@Override
 	public void saveStaff(Staff staff) {
@@ -141,9 +142,8 @@ public class StaffDaoImpl implements StaffDao {
 	public List<Staff> getAllStaffs() {
 		try {
 			session = FACTORY.getCurrentSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 			tx.begin();
-			@SuppressWarnings("unchecked")
 			List<Staff> li = session.createCriteria(Staff.class).list();
 			tx.commit();
 			LOG.info("Fetching list of Staff(s)");

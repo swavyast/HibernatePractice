@@ -23,36 +23,33 @@ public class SaveTeacher {
 	public static void main(String[] args) {
 		TeacherDao tdao = new TeacherDaoImpl();
 		Teacher teacher = new Teacher();
-		teacher.setName("Himanshu RAi");
-		teacher.setFatherName("D. K. Rai");
-		teacher.setMotherName("Nilam Rai");
-		teacher.setGender(Gender.MALE);
-		teacher.setAge("30");
+		teacher.setName("Anita Bhardwaj");
+		teacher.setFatherName("Anil Bhardwaj");
+		teacher.setMotherName("Rekha Devi");
+		teacher.setGender(Gender.FEMALE);
+		teacher.setAge("18");
 		teacher.setEthnicity(Ethnicity.CAUCASIAN);
-		teacher.setDob("01-July-1994");
-		teacher.setSalary(56572.369);
-		teacher.setBonus(12346.689);
-		teacher.setAnnualLeaves(20);
-		teacher.setLeaveWithoutPay(30);
-		teacher.setDepartment("IT/Software");
-		teacher.setPosition("Java Developer");
-		teacher.setManager("Manager");
-		teacher.setTeamMembers(Arrays.asList("Abhijeet Singh", "Animesh Prajapati", "Munn Jangid"));
+		teacher.setDob("01-July-2005");
+		teacher.setSalary(10000.00);
+		teacher.setBonus(500.00);
+		teacher.setAnnualLeaves(2);
+		teacher.setLeaveWithoutPay(0);
+		teacher.setDepartment("Computer Organisation");
+		teacher.setPosition("Asst. Professor");
+		teacher.setManager("Chandrashekhar Rai");
+		teacher.setTeamMembers(Arrays.asList("Rohit Singh", "Romail Rai"));
 		Set<String> set = new HashSet<>();
 		set.add("ClassRoom");
 		set.add("Admin Cell");
 		set.add("Auditorium");
-		set.add("Control Room");
-		set.add("H.O.D. Office");
-		set.add("V. C. Office");
 		teacher.setCanAccess(set);
-		List<Subject> specs = Arrays.asList(Subject.SCIENCE, Subject.STATISTICS, Subject.MATHEMATICS);
+		List<Subject> specs = Arrays.asList(Subject.COMPUTER);
 		teacher.setSpecialities(specs);
-		List<String> classrooms = Arrays.asList("CR-A101", "CR-B306", "CR-C002");
+		List<String> classrooms = Arrays.asList("CR-A103");
 		teacher.setClassRoom(classrooms);
 		teacher.setModeOfTeaching(ModeOfTeaching.OFFLINE);
 		if (LOG.isInfoEnabled())
-			LOG.info("{}", teacher);	//using formatter {}.
+			LOG.info("{}", teacher); // using formatter {}.
 		tdao.saveTeacher(teacher);
 	}
 

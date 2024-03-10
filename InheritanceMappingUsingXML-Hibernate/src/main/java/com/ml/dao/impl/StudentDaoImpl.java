@@ -13,6 +13,7 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 import com.ml.dao.StudentDao;
+import com.ml.entity.Employee;
 import com.ml.entity.Ethnicity;
 import com.ml.entity.Gender;
 import com.ml.entity.Student;
@@ -133,11 +134,12 @@ public class StudentDaoImpl implements StudentDao {
 	public List<Student> getAllStudents() {
 		try {
 			session = FACTORY.getCurrentSession();
-			tx = session.beginTransaction();
+			tx = session.getTransaction();
 			tx.begin();
-			Criteria c = session.createCriteria(Student.class);
+			List<Student> li = session.createCriteria(Student.class).list();
 			tx.commit();
-			return c.list();
+			LOG.info("Fetching list of Student(s)");
+			return li;
 		} catch (Exception e) {
 			if (tx != null && !tx.wasCommitted())
 				tx.rollback();

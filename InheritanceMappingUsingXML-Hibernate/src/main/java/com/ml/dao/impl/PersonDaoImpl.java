@@ -17,6 +17,7 @@ import com.ml.utilities.DatabaseUtilities;
 
 import java.util.Collections;
 
+@SuppressWarnings("unchecked")
 public class PersonDaoImpl implements PersonDao {
 
 	private static final SessionFactory FACTORY = DatabaseUtil.getSessionFactory();
@@ -118,7 +119,6 @@ public class PersonDaoImpl implements PersonDao {
 			session = FACTORY.getCurrentSession();
 			tx = session.getTransaction();
 			tx.begin();
-			@SuppressWarnings("unchecked")
 			List<Person> li = session.createCriteria(Person.class).list();
 			if (!tx.wasCommitted())
 				tx.commit();
