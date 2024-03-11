@@ -1,7 +1,0 @@
-			name = this.getName();
-			fatherName = this.getFatherName();
-			motherName = this.getMotherName();
-			dob = this.getDob();
-			age = this.getAge();
-			gender = this.getGender();
-			ethnicity = this.getEthnicity();
