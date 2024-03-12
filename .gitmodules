@@ -4,6 +4,3 @@
 [submodule "AnnotatedMapping"]
 	path = AnnotatedMapping
 	url = https://github.com/swavyast/AnnotatedMapping
-[submodule "InheritanceMappingUsingXML-Hibernate'"]
-	path = InheritanceMappingUsingXML-Hibernate'
-	url = https://github.com/swavyast/InheritanceMappingUsingXML-Hibernate
